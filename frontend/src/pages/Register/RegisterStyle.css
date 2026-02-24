@@ -1,0 +1,143 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
+.register-page {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+    background-color: aliceblue;
+    font-family: "Montserrat", sans-serif;
+}
+
+.register-page,
+.register-page * {
+    box-sizing: border-box;
+}
+
+.register-page .input-field {
+    background-color: #fff;
+    color: #213547;
+}
+
+#root {
+    width: 100%;
+    padding: 0 0.6rem;
+}
+
+.register-page .register-container {
+    max-width: 500px;
+    margin: 0 auto;
+    border-radius: 1.5rem;
+    padding: 8rem 5rem;
+    background: #fff;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+}
+
+.register-page .register-container .form-title {
+    text-align: center;
+    font-size: 1.75rem;
+    color: black;
+    font-weight: 700;
+    margin-bottom: 1.27rem;
+}
+
+.register-page .register-container .separator {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.9rem;
+    margin: 1.25rem 0;
+    color: #5d5d5d;
+    font-size: 1.25rem;
+    font-weight: 500;
+}
+
+.register-page .register-container .separator::before,
+.register-page .register-container .separator::after {
+    content: "";
+    flex: 1;
+    height: 4px;
+    background: #7a7a7a;
+    opacity: 40%;
+}
+
+.register-page .register-container .separator span {
+    white-space: nowrap;
+    padding: 0 0.25rem;
+    background: #fff;
+}
+
+.register-page .register-container .separator:empty {
+    gap: 0;
+}
+
+.register-page .register-form .input-wrapper {
+    height: 54px;
+    width: 100%;
+    margin-bottom: 1.5rem;
+    position: relative;
+    color: #fff;
+}
+
+.register-page .register-form .input-wrapper .input-field {
+    height: 100%;
+    width: 100%;
+    border-radius: 0.5rem;
+    border: 1px solid #9d9c9c;
+    padding: 0 1.25rem 0 3.12rem;
+    outline: none;
+    font-size: 1.06rem;
+    transition: 0.2s;
+}
+
+.register-page .register-form .input-wrapper i {
+    color: #9d9c9c;
+    position: absolute;
+    top: 50%;
+    left: 0.9rem;
+    pointer-events: none;
+    transform: translateY(-50%);
+}
+
+.register-page .input-wrapper .input-field:focus {
+    border-color: #5d5d5d;
+}
+
+.register-page .input-wrapper .input-field:focus ~ i {
+    border-color: #5d5d5d;
+}
+
+.register-form .register-button {
+    width: 100%;
+    height: 54px;
+    cursor: pointer;
+    outline: none;
+    font-weight: 500;
+    font-size: 1.125rem;
+    margin-top: 1.19rem;
+    border: none;
+    border-radius: 0.31rem;
+    transition: 0.2s ease;
+}
+
+.register-page .register-container .signup-text {
+    text-align: center;
+    font-weight: 500;
+    margin: 1.75rem 0 0.31rem;
+    color: black;
+}
+
+.register-page .register-container a {
+    color: #0113ae;
+}
+
+.register-page .register-container a:hover {
+    text-decoration: underline;
+}
+
+.register-page .register-container .forgot-pass-link {
+    text-align: center;
+    font-weight: 500;
+    margin-left: 100px;
+}
