@@ -12,6 +12,7 @@ import Register from "./pages/Register/RegisterPage";
 import FormList from "./pages/FormList/FormListPage";
 import CreateForm from "./pages/CreateForm/CreateFormPage";
 import FormDetails from "./pages/FormDetails/FormDetailsPage";
+import Forgot from "./pages/ForgotPassword/ForgotPage";
 
 export default function App() {
   return (
@@ -25,6 +26,7 @@ export default function App() {
         <Route path="/FormList" element={<FormList />} />
         <Route path="/CreateForm" element={<CreateForm />} />
         <Route path="/FormDetails" element={<FormDetails />} />
+        <Route path="/Forgot" element={<Forgot />} />
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
   
