@@ -1,4 +1,5 @@
 import "./RegisterStyle.css";
+import { Link } from "react-router-dom";
 
 export default function Register() {
     return(
@@ -19,13 +20,13 @@ export default function Register() {
                         <i className="material-symbols-outlined">lock</i>
                     </div>
 
-                    <a href="#" className="forgot-pass-link">Forgot Password?</a>
+                    <Link to="/Forgot" className="forgot-pass-link">Forgot Password?</Link>
 
                     <button className="register-button">
                         Submit 
                     </button>
 
-                    <p className="signup-text">Already have one? <a href="#">Login here!</a></p>
+                    <p className="signup-text">Already have one? <Link to="/Login">Login here!</Link></p>
                 </form>
 
             </div>

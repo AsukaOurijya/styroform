@@ -20,6 +20,8 @@ export default function FormList() {
       questions: [
         "How satisfied are you with our product quality?",
         "How would you rate our support team's response time?",
+        "Which feature gives you the most value?",
+        "What should we improve first to raise your satisfaction?",
       ],
     },
     {
@@ -128,8 +130,8 @@ export default function FormList() {
                   {form.isOwner ? (
                     <>
                       <Link
-                        to="/FormDetails"
-                        state={{ form, canEdit: true, action: "edit" }}
+                        to="/EditForm"
+                        state={{ form }}
                         className="form-card-action form-card-edit"
                       >
                         Edit

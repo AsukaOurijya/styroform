@@ -1,4 +1,5 @@
 import "./LoginStyle.css";
+import { Link } from "react-router-dom";
 
 export default function Login() {
     return(
@@ -19,13 +20,13 @@ export default function Login() {
                         <i className="material-symbols-outlined">lock</i>
                     </div>
 
-                    <a href="#" className="forgot-pass-link">Forgot Password?</a>
+                    <Link to="/Forgot" className="forgot-pass-link">Forgot Password?</Link>
 
                     <button className="login-button">
                         Submit 
                     </button>
 
-                    <p className="signup-text">No account yet? <a href="#">Create one here!</a></p>
+                    <p className="signup-text">No account yet? <Link to="/Register">Create one here!</Link></p>
                 </form>
 
             </div>

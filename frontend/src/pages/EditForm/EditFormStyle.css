@@ -1,23 +1,23 @@
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap");
 
-.create-form-page {
+.edit-form-page {
   min-height: calc(100vh - 72px);
   padding: 28px 18px 48px;
   background: #f4f6fa;
   font-family: "Montserrat", sans-serif;
 }
 
-.create-form-page,
-.create-form-page * {
+.edit-form-page,
+.edit-form-page * {
   box-sizing: border-box;
 }
 
-.create-form-shell {
+.edit-form-shell {
   width: min(1200px, 100%);
   margin: 0 auto;
 }
 
-.create-form-header {
+.edit-form-header {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -25,7 +25,7 @@
   margin-bottom: 16px;
 }
 
-.create-form-top-button {
+.edit-form-top-button {
   min-width: 140px;
   height: 44px;
   border-radius: 8px;
@@ -38,7 +38,7 @@
   transition: background-color 0.2s ease, transform 0.2s ease;
 }
 
-.create-form-top-button:hover {
+.edit-form-top-button:hover {
   background: #2a2a2a;
   transform: translateY(-1px);
 }
@@ -320,11 +320,11 @@
 }
 
 @media (max-width: 760px) {
-  .create-form-header {
+  .edit-form-header {
     flex-wrap: wrap;
   }
 
-  .create-form-top-button {
+  .edit-form-top-button {
     min-width: 118px;
     flex: 1;
   }

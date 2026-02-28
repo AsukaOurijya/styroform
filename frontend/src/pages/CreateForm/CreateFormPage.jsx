@@ -7,6 +7,7 @@ const buildQuestionId = () => `${Date.now()}-${Math.floor(Math.random() * 10000)
 export default function CreateForm() {
   const navigate = useNavigate();
   const [formTitle, setFormTitle] = useState("");
+  const [formDescription, setFormDescription] = useState("");
   const [formCoverFile, setFormCoverFile] = useState(null);
   const [formCoverPreview, setFormCoverPreview] = useState("");
   const [formErrors, setFormErrors] = useState({ title: "", cover: "" });
@@ -158,6 +159,17 @@ export default function CreateForm() {
             <p className="form-field-error">{formErrors.title}</p>
           ) : null}
 
+          <label className="form-field-label" htmlFor="form-description-input">
+            Form Description
+          </label>
+          <textarea
+            id="form-description-input"
+            className="form-description-input"
+            placeholder="Enter form description"
+            value={formDescription}
+            onChange={(event) => setFormDescription(event.target.value)}
+          />
+
           <label className="form-field-label" htmlFor="form-cover-input">
             Form Cover
           </label>
@@ -270,7 +282,7 @@ export default function CreateForm() {
                 className="question-editor-action"
                 onClick={saveQuestion}
               >
-                Save Question
+                Save
               </button>
               <button
                 type="button"

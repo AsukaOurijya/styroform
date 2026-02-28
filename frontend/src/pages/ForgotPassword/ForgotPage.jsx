@@ -1,4 +1,5 @@
 import "./ForgotStyle.css";
+import { Link } from "react-router-dom";
 
 export default function Forgot() {
     return(
@@ -28,7 +29,7 @@ export default function Forgot() {
                         Reset Password
                     </button>
 
-                    <p className="signup-text">No account yet? <a href="#">Create one here!</a></p>
+                    <p className="signup-text">No account yet? <Link to="/Register">Create one here!</Link></p>
                 </form>
 
             </div>

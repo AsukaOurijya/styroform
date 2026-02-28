@@ -1,4 +1,5 @@
 import "./HeroStyle.css";
+import { Link } from "react-router-dom";
 
 export default function Hero() {
   return (
@@ -8,9 +9,11 @@ export default function Hero() {
         <p className="hero-subtitle">
           Build fast forms and collect responses with Styroform.
         </p>
-        <button className="hero-button" type="button">
-          Explore Forms
-        </button>
+        <Link to="/FormList">
+            <button className="hero-button" type="button">
+              Explore Forms
+            </button>
+        </Link>
         <div className="hero-divider" />
       </div>
     </section>
