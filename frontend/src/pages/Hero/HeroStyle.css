@@ -22,6 +22,7 @@
   color: #111111;
   border-radius: 28px 28px 14px 14px;
   box-shadow: 0 16px 40px rgba(0, 0, 0, 0.28);
+  animation: hero-card-reveal 700ms ease-out both;
 }
 
 .hero-title {
@@ -30,6 +31,8 @@
   font-size: clamp(2rem, 4vw, 3rem);
   line-height: 1.15;
   font-weight: 500;
+  opacity: 0;
+  animation: hero-fade-up 520ms ease-out 120ms forwards;
 }
 
 .hero-subtitle {
@@ -37,6 +40,14 @@
   font-size: clamp(0.95rem, 1.8vw, 1.15rem);
   line-height: 1.6;
   color: #343434;
+  opacity: 0;
+  animation: hero-fade-up 520ms ease-out 220ms forwards;
+}
+
+.hero-card > a {
+  display: inline-block;
+  opacity: 0;
+  animation: hero-fade-up 520ms ease-out 320ms forwards;
 }
 
 .hero-button {
@@ -48,12 +59,13 @@
   font-weight: 700;
   padding: 12px 28px;
   cursor: pointer;
-  transition: transform 0.2s ease, background-color 0.2s ease;
+  transition: transform 0.2s ease, background-color 0.2s ease, box-shadow 0.2s ease;
 }
 
 .hero-button:hover {
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.22);
   color: #cccccc;
-  transform: translateY(-1px);
+  transform: translateY(-2px);
 }
 
 .hero-divider {
@@ -62,10 +74,67 @@
   margin: 26px auto 0;
   border-radius: 999px;
   background-color: #000;
+  transform-origin: center;
+  animation: hero-divider-grow 600ms ease-out 420ms both;
+}
+
+@keyframes hero-pan {
+  from {
+    background-position: center 46%;
+  }
+  to {
+    background-position: center 54%;
+  }
+}
+
+@keyframes hero-card-reveal {
+  from {
+    opacity: 0;
+    transform: translateY(20px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes hero-fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes hero-divider-grow {
+  from {
+    opacity: 0;
+    transform: scaleX(0.2);
+  }
+  to {
+    opacity: 1;
+    transform: scaleX(1);
+  }
 }
 
 @media (max-width: 640px) {
   .hero-card {
     padding: 34px 22px 24px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-section,
+  .hero-card,
+  .hero-title,
+  .hero-subtitle,
+  .hero-card > a,
+  .hero-divider {
+    animation: none !important;
+    opacity: 1;
+    transform: none;
   }
 }
