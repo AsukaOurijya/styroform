@@ -14,6 +14,8 @@ import CreateForm from "./pages/CreateForm/CreateFormPage";
 import EditForm from "./pages/EditForm/EditFormPage";
 import FormDetails from "./pages/FormDetails/FormDetailsPage";
 import Forgot from "./pages/ForgotPassword/ForgotPage";
+import AccountPreview from "./pages/AccountPreview/AccountPreviewPage";
+import EditAccount from "./pages/EditAccount/EditAccountPage";
 
 export default function App() {
   return (
@@ -29,6 +31,8 @@ export default function App() {
         <Route path="/EditForm" element={<EditForm />} />
         <Route path="/FormDetails" element={<FormDetails />} />
         <Route path="/Forgot" element={<Forgot />} />
+        <Route path="/AccountPreview" element={<AccountPreview />} />
+        <Route path="/EditAccount" element={<EditAccount />} />
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
   
