@@ -1,7 +1,10 @@
 import "./Navbar.css";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 const Navbar = () => {
+  const location = useLocation();
+  const isFormListPage = location.pathname === "/FormList";
+
   return (
     <nav className="navbar">
       <div className="navbar-inner">
@@ -15,11 +18,25 @@ const Navbar = () => {
               Home
             </Link>
           </li>
+          {isFormListPage && (
+            <li>
+              <Link to="/CreateForm" className="navbar-link">
+                Create Form
+              </Link>
+            </li>
+          )}
           <li>
             <Link to="/Login" className="navbar-link">
               Account
             </Link>
           </li>
+          {isFormListPage && (
+            <li>
+              <Link to="/" className="navbar-link">
+                Logout
+              </Link>
+            </li>
+          )}
         </ul>
       </div>
     </nav>
