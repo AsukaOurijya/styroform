@@ -1,0 +1,211 @@
+.edit-account-page {
+  min-height: calc(100vh - 72px);
+  padding: 28px 18px 48px;
+  background-image:
+        linear-gradient(rgba(0, 0, 0, 0.28), rgba(0, 0, 0, 0.2)),
+        url("../../assets/landscape.jpg");
+  box-sizing: border-box;
+}
+
+.edit-account-card {
+  width: min(900px, 100%);
+  margin: 0 auto;
+  margin-top: 225px;
+  border: 1px solid #d9dee7;
+  border-radius: 12px;
+  background: #ffffff;
+  box-shadow: 0 8px 20px rgba(16, 34, 63, 0.08);
+  display: grid;
+  grid-template-columns: 240px 1fr;
+  overflow: hidden;
+}
+
+.edit-account-image-column {
+  border-right: 1px solid #e5e9f0;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: #fbfcff;
+}
+
+.edit-account-image {
+  width: 170px;
+  height: 170px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid #e0e6f0;
+  margin-bottom: 12px;
+}
+
+.edit-account-photo-input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.edit-account-photo-button {
+  width: 100%;
+  max-width: 170px;
+  height: 40px;
+  border: 1px solid #ccd5e2;
+  border-radius: 8px;
+  background: #ffffff;
+  color: #243850;
+  font-size: 0.9rem;
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.edit-account-photo-button:hover {
+  border-color: #7ea8d3;
+}
+
+.edit-account-photo-name {
+  width: 100%;
+  max-width: 170px;
+  margin: 8px 0 0;
+  color: #64758a;
+  font-size: 0.82rem;
+  text-align: center;
+  line-height: 1.4;
+}
+
+.edit-account-delete-photo-button {
+  width: 100%;
+  max-width: 170px;
+  height: 40px;
+  margin-top: 10px;
+  border: 1px solid #d74646;
+  border-radius: 8px;
+  background: #d74646;
+  color: #ffffff;
+  font-size: 0.9rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.edit-account-delete-photo-button:hover {
+  background: #be3434;
+}
+
+.edit-account-detail-column {
+  padding: 20px;
+}
+
+.edit-account-label {
+  display: block;
+  margin: 0 0 8px;
+  color: #1b2b42;
+  font-size: 0.94rem;
+  font-weight: 700;
+}
+
+.edit-account-input {
+  width: 90%;
+  height: 30px;
+  border: 1px solid #ccd5e2;
+  border-radius: 8px;
+  padding: 10px 12px;
+  color: #1f2f46;
+  font-size: 0.95rem;
+  background: #ffffff;
+  outline: none;
+  margin-bottom: 12px;
+}
+
+.edit-account-input:focus {
+  border-color: #5d8fca;
+}
+
+.edit-account-password-row {
+  display: grid;
+  grid-template-columns: 1fr 44px;
+  gap: 8px;
+}
+
+.edit-account-password-row .edit-account-input {
+  margin-bottom: 0;
+}
+
+.edit-account-eye-button {
+  width: 44px;
+  height: 46px;
+  padding: 0;
+  border: 1px solid #ccd5e2;
+  border-radius: 8px;
+  color: black;
+  background: #ffffff;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.edit-account-eye-button:hover {
+  border-color: #7ea8d3;
+}
+
+.edit-account-eye-icon {
+  font-size: 21px;
+  line-height: 1;
+}
+
+.edit-account-error {
+  margin: 10px 0 0;
+  color: #d64646;
+  font-size: 0.86rem;
+  font-weight: 600;
+}
+
+.edit-account-actions {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-top: 14px;
+}
+
+.edit-account-action-button {
+  min-width: 120px;
+  height: 40px;
+  border-radius: 8px;
+  border: 1px solid #111111;
+  background: #111111;
+  color: #ffffff;
+  font-size: 0.9rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.edit-account-action-button:hover {
+  background: #2a2a2a;
+}
+
+.edit-account-action-secondary {
+  border-color: #d2dae5;
+  background: #ffffff;
+  color: #253851;
+}
+
+.edit-account-action-secondary:hover {
+  border-color: #7ea8d3;
+  background: #f7faff;
+}
+
+@media (max-width: 760px) {
+  .edit-account-card {
+    grid-template-columns: 1fr;
+  }
+
+  .edit-account-image-column {
+    border-right: 0;
+    border-bottom: 1px solid #e5e9f0;
+  }
+}
