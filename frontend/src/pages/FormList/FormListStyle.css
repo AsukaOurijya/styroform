@@ -65,10 +65,10 @@
 }
 
 .form-list-tab.is-active {
+  border-color: #000000;
   background: #000000;
   color: #ffffff;
 }
-
 
 .form-card-grid {
   display: flex;
@@ -132,16 +132,25 @@
   border-left: 1px solid #e0e4eb;
   padding: 16px;
   display: flex;
+  flex-direction: column;
+  gap: 10px;
   align-items: center;
   justify-content: center;
 }
 
 .form-card-action-panel.is-owner {
-  flex-direction: column;
-  gap: 10px;
+  align-items: center;
 }
 
 .form-card-action {
+  width: 128px;
+  height: 44px;
+  box-sizing: border-box;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  white-space: nowrap;
   border: 0;
   background: #111111;
   color: #ffffff;
@@ -149,7 +158,7 @@
   font-weight: 700;
   cursor: pointer;
   text-decoration: none;
-  padding: 11px 20px;
+  padding: 0 12px;
   border-radius: 10px;
   transition: background-color 0.2s ease, transform 0.2s ease;
 }
@@ -159,10 +168,9 @@
 }
 
 .form-card-open:hover {
-  background-color: aliceblue;
-  box-shadow: 0 8px 20px rgba(16, 34, 63, 0.08);
-  color: #000000;
+  background: #2a2a2a;
   transform: translateY(-1px);
+  color: #ffffff;
 }
 
 .form-card-edit {
@@ -181,6 +189,44 @@
 .form-card-delete:hover {
   background: #be3434;
   transform: translateY(-1px);
+}
+
+.form-card-star {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  background: #2f3a4d;
+}
+
+.form-card-star:hover {
+  background: #39465d;
+  transform: translateY(-1px);
+}
+
+.form-card-star.is-starred {
+  background: #d4a017;
+  color: #ffffff;
+}
+
+.form-card-star.is-starred:hover {
+  background: #bc8e13;
+}
+
+.form-card-star-icon {
+  font-size: 0.95rem;
+  line-height: 1;
+}
+
+.form-list-empty {
+  margin: 0;
+  border: 1px dashed #c8d2df;
+  border-radius: 10px;
+  background: #fbfcff;
+  color: #667892;
+  padding: 18px;
+  text-align: center;
+  font-size: 0.95rem;
 }
 
 @media (max-width: 680px) {
@@ -207,11 +253,12 @@
     border-left: 0;
     border-top: 1px solid #e0e4eb;
     justify-content: flex-start;
+    align-items: center;
   }
 
   .form-card-action-panel.is-owner {
-    flex-direction: row;
-    flex-wrap: wrap;
+    flex-direction: column;
+    align-items: center;
   }
 
   .form-card-title {
