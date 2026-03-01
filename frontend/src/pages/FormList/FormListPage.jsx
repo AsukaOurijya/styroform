@@ -1,11 +1,13 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import "./FormListStyle.css";
 import formPreviewImage from "../../assets/landscape.jpg";
 import noImage from "../../assets/noimage.jpg";
+import { apiUrl } from "../../utils/api";
 
 export default function FormList() {
   const [activeFilter, setActiveFilter] = useState("all");
+  const [username, setUsername] = useState("");
   const [forms, setForms] = useState([
     {
       id: 1,
@@ -61,11 +63,31 @@ export default function FormList() {
     return true;
   });
 
+  useEffect(() => {
+    let isMounted = true;
+
+    fetch(apiUrl("/accounts/session/"), {
+      credentials: "include",
+    })
+      .then(async (response) => {
+        if (!isMounted || !response.ok) return;
+        const payload = await response.json();
+        if (payload.authenticated && payload.user?.username) {
+          setUsername(payload.user.username);
+        }
+      })
+      .catch(() => {});
+
+    return () => {
+      isMounted = false;
+    };
+  }, []);
+
   return (
     <main className="form-list-page">
       <section className="form-list-container">
         <header className="form-list-header">
-          <h1 className="form-list-title">Welcome Back, username!</h1>
+          <h1 className="form-list-title">Welcome Back, {username || "User"}!</h1>
           <p className="form-list-subtitle">
             Build or Fill form, effortlessly with Styroform.
           </p>

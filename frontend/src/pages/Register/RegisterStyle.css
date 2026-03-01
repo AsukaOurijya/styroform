@@ -77,6 +77,20 @@
     gap: 0;
 }
 
+.register-page .register-container .auth-message {
+    margin: 0 0 1rem;
+    padding: 0.75rem 0.9rem;
+    border-radius: 0.5rem;
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+
+.register-page .register-container .auth-message-error {
+    background: #ffe9e9;
+    color: #9b1d1d;
+    border: 1px solid #f1bcbc;
+}
+
 .register-page .register-form .input-wrapper {
     height: 54px;
     width: 100%;

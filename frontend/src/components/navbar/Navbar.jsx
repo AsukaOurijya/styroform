@@ -1,6 +1,8 @@
 import "./Navbar.css";
 import { Link, useLocation } from "react-router-dom";
 
+import { apiUrl } from "../../utils/api";
+
 const Navbar = () => {
   const location = useLocation();
   const isFormListPage = location.pathname === "/FormList";
@@ -32,9 +34,9 @@ const Navbar = () => {
           </li>
           {isFormListPage && (
             <li>
-              <Link to="/" className="navbar-link">
+              <a href={apiUrl("/accounts/logout/")} className="navbar-link">
                 Logout
-              </Link>
+              </a>
             </li>
           )}
         </ul>

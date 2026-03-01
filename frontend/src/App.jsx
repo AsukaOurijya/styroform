@@ -6,6 +6,7 @@ import {
 } from "react-router-dom"
 
 import Navbar from "./components/navbar/Navbar";
+import ProtectedRoute from "./components/auth/ProtectedRoute";
 import Hero from "./pages/Hero/HeroPage";
 import Login from "./pages/Login/LoginPage";
 import Register from "./pages/Register/RegisterPage";
@@ -26,13 +27,55 @@ export default function App() {
         <Route path="/" element={<Hero />} />
         <Route path="/Login" element={<Login />} />
         <Route path="/Register" element={<Register />} />
-        <Route path="/FormList" element={<FormList />} />
-        <Route path="/CreateForm" element={<CreateForm />} />
-        <Route path="/EditForm" element={<EditForm />} />
-        <Route path="/FormDetails" element={<FormDetails />} />
+        <Route
+          path="/FormList"
+          element={
+            <ProtectedRoute>
+              <FormList />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/CreateForm"
+          element={
+            <ProtectedRoute>
+              <CreateForm />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/EditForm"
+          element={
+            <ProtectedRoute>
+              <EditForm />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/FormDetails"
+          element={
+            <ProtectedRoute>
+              <FormDetails />
+            </ProtectedRoute>
+          }
+        />
         <Route path="/Forgot" element={<Forgot />} />
-        <Route path="/AccountPreview" element={<AccountPreview />} />
-        <Route path="/EditAccount" element={<EditAccount />} />
+        <Route
+          path="/AccountPreview"
+          element={
+            <ProtectedRoute>
+              <AccountPreview />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/EditAccount"
+          element={
+            <ProtectedRoute>
+              <EditAccount />
+            </ProtectedRoute>
+          }
+        />
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
   

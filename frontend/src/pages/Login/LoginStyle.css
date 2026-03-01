@@ -77,6 +77,26 @@
     gap: 0;
 }
 
+.login-page .login-container .auth-message {
+    margin: 0 0 1rem;
+    padding: 0.75rem 0.9rem;
+    border-radius: 0.5rem;
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+
+.login-page .login-container .auth-message-error {
+    background: #ffe9e9;
+    color: #9b1d1d;
+    border: 1px solid #f1bcbc;
+}
+
+.login-page .login-container .auth-message-success {
+    background: #e8f7ee;
+    color: #166b3a;
+    border: 1px solid #b9e3c8;
+}
+
 .login-page .login-form .input-wrapper {
     height: 54px;
     width: 100%;

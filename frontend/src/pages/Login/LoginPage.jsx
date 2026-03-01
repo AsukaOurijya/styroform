@@ -1,7 +1,21 @@
 import "./LoginStyle.css";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
+import { apiUrl } from "../../utils/api";
 
 export default function Login() {
+    const location = useLocation();
+    const searchParams = new URLSearchParams(location.search);
+    const errorCode = searchParams.get("error");
+    const noticeCode = searchParams.get("notice");
+
+    const errorMessage = errorCode === "invalid_credentials"
+        ? "Invalid username or password."
+        : "";
+
+    const noticeMessage = noticeCode === "registration_success"
+        ? "Account created. Please log in."
+        : "";
+
     return(
         <div className="login-page">
             <div className="login-container">
@@ -9,14 +23,21 @@ export default function Login() {
                 
                 <p className="separator"><span>Login</span></p>
 
-                <form action="#" className="login-form">
+                {errorMessage ? (
+                    <p className="auth-message auth-message-error">{errorMessage}</p>
+                ) : null}
+                {noticeMessage ? (
+                    <p className="auth-message auth-message-success">{noticeMessage}</p>
+                ) : null}
+
+                <form action={apiUrl("/accounts/login/")} method="POST" className="login-form">
                     <div className="input-wrapper">
-                        <input type="username" placeholder="Username" className="input-field" required/>
+                        <input type="text" name="username" placeholder="Username" className="input-field" required/>
                         <i className="material-symbols-outlined">account_circle</i>
                     </div>
 
                     <div className="input-wrapper">
-                        <input type="password" placeholder="Password" className="input-field" required/>
+                        <input type="password" name="password" placeholder="Password" className="input-field" required/>
                         <i className="material-symbols-outlined">lock</i>
                     </div>
 

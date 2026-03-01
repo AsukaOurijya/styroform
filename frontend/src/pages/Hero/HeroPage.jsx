@@ -10,9 +10,9 @@ export default function Hero() {
           Build fast forms and collect responses with Styroform.
         </p>
         <Link to="/FormList">
-            <button className="hero-button" type="button">
-              Explore Forms
-            </button>
+          <button className="hero-button" type="button">
+            Explore Forms
+          </button>
         </Link>
         <div className="hero-divider" />
       </div>

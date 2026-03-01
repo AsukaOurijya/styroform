@@ -88,6 +88,13 @@
   color: black;
 }
 
+.account-preview-error {
+  margin: 6px 0 0;
+  color: #d64646;
+  font-size: 0.86rem;
+  font-weight: 600;
+}
+
 @media (max-width: 760px) {
   .account-preview-card {
     grid-template-columns: 1fr;

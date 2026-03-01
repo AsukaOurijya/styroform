@@ -8,3 +8,4 @@ python-dotenv
 django-tailwind
 django-htmx
 dj-database-url
+Pillow
