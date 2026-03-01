@@ -8,4 +8,5 @@ python-dotenv
 django-tailwind
 django-htmx
 dj-database-url
+django-cors-headers
 Pillow
