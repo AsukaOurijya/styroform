@@ -1,5 +1,15 @@
 # Styroform
 
+A website where you can create or respond some forms.
+Deployment Link:
+
+## References I use while developing this website:
+1. https://youtu.be/Cz-NebfESNM?si=uPDlg38f64B2dzHM
+
+2. https://youtu.be/kArTb1IDERo?si=4AOU3GC58zVECWCB
+
+3. https://pbp-fasilkom-ui.github.io/ganjil-2026/docs/tutorial-4
+
 Tech Stack:
 - Backend: Django
 - Frontend: React + Vite
@@ -120,14 +130,4 @@ If both servers run without errors, the website is ready to use.
 - Database errors:
   - Run `python manage.py migrate` again.
 
-# styroform
-A website where you can create or respond some forms.
-Deployment Link:
-
-## References I use while developing this website:
-1. https://youtu.be/Cz-NebfESNM?si=uPDlg38f64B2dzHM
-
-2. https://youtu.be/kArTb1IDERo?si=4AOU3GC58zVECWCB
-
-3. https://pbp-fasilkom-ui.github.io/ganjil-2026/docs/tutorial-4
- 
+2026 All rights reserved.
