@@ -1,6 +1,9 @@
 # Styroform
 
-A website where you can create or respond some forms.
+A website where you can create or respond some forms. \
+Link deployment: 
+1. Front-End: https://styroform.vercel.app/
+2. Back-End: https://styroform-be.vercel.app/
 
 ## References I use while developing this website:
 1. https://youtu.be/Cz-NebfESNM?si=uPDlg38f64B2dzHM
