@@ -1,7 +1,6 @@
 # Styroform
 
 A website where you can create or respond some forms.
-Deployment Link:
 
 ## References I use while developing this website:
 1. https://youtu.be/Cz-NebfESNM?si=uPDlg38f64B2dzHM
