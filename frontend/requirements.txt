@@ -1,0 +1,21 @@
+# React frontend dependencies
+#
+# Note: React/Vite projects don't use Python `requirements.txt`.
+# The actual dependency manifests are:
+#   - `frontend/package.json` (declares dependencies)
+#   - `frontend/package-lock.json` (pins exact versions)
+#
+# Install (recommended, uses package-lock):
+#   npm ci
+#
+# Dev server:
+#   npm run dev
+#
+# Production build:
+#   npm run build
+#
+# Human-readable summary of key packages (source of truth is package.json):
+react
+react-dom
+react-router-dom
+vite

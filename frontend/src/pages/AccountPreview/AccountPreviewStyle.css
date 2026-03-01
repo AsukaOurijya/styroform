@@ -1,0 +1,107 @@
+.account-preview-page {
+  min-height: calc(100vh - 72px);
+  padding: 28px 18px 48px;
+  background-image:
+        linear-gradient(rgba(0, 0, 0, 0.28), rgba(0, 0, 0, 0.2)),
+        url("../../assets/landscape.jpg");
+  box-sizing: border-box;
+}
+
+.account-preview-card {
+  width: min(900px, 100%);
+  margin: 0 auto;
+  margin-top: 225px;
+  border: 1px solid #d9dee7;
+  border-radius: 12px;
+  background: #ffffff;
+  box-shadow: 0 8px 20px rgba(16, 34, 63, 0.08);
+  display: grid;
+  grid-template-columns: 240px 1fr;
+  overflow: hidden;
+}
+
+.account-preview-image-column {
+  border-right: 1px solid #e5e9f0;
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #fbfcff;
+}
+
+.account-preview-image {
+  width: 170px;
+  height: 170px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid #e0e6f0;
+}
+
+.account-preview-detail-column {
+  padding: 20px;
+}
+
+.account-preview-label {
+  display: block;
+  margin: 0 0 8px;
+  color: #1b2b42;
+  font-size: 0.94rem;
+  font-weight: 700;
+}
+
+.account-preview-input {
+  width: 90%;
+  height: 30px;
+  border: 1px solid #ccd5e2;
+  border-radius: 8px;
+  padding: 10px 15px;
+  color: #1f2f46;
+  font-size: 0.95rem;
+  background: #f9fbff;
+  outline: none;
+  margin-bottom: 12px;
+}
+
+.account-preview-input[readonly] {
+  cursor: default;
+}
+
+.account-preview-edit-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 128px;
+  height: 40px;
+  border-radius: 8px;
+  margin-top: 10px;
+  border: 1px solid #111111;
+  background: #111111;
+  color: #ffffff;
+  text-decoration: none;
+  font-size: 0.9rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.account-preview-edit-button:hover {
+  background: white;
+  color: black;
+}
+
+.account-preview-error {
+  margin: 6px 0 0;
+  color: #d64646;
+  font-size: 0.86rem;
+  font-weight: 600;
+}
+
+@media (max-width: 760px) {
+  .account-preview-card {
+    grid-template-columns: 1fr;
+  }
+
+  .account-preview-image-column {
+    border-right: 0;
+    border-bottom: 1px solid #e5e9f0;
+  }
+}

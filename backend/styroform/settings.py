@@ -35,6 +35,7 @@ ALLOWED_HOSTS = [
 ]
 
 PRODUCTION = os.getenv('PRODUCTION', 'False').lower() == 'true'
+FRONTEND_URL = os.getenv("FRONTEND_URL", "http://localhost:5173").rstrip("/")
 
 
 # Application definition
@@ -46,6 +47,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'accounts',
+    'core',
+    'forms',
 ]
 
 MIDDLEWARE = [
@@ -127,3 +131,6 @@ USE_TZ = True
 STATIC_URL = 'static/'
 
 STATIC_ROOT = BASE_DIR / "staticfiles"
+
+MEDIA_URL = "/media/"
+MEDIA_ROOT = BASE_DIR / "media"
