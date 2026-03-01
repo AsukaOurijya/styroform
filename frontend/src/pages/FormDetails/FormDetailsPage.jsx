@@ -20,8 +20,7 @@ export default function FormDetails() {
 
   const handleSubmitAnswers = (event) => {
     event.preventDefault();
-    // Placeholder submit action while backend endpoint is not connected.
-    window.alert("Answers submitted.");
+    navigate("/FormList");
   };
 
   const handleAnswerChange = (index, value) => {
@@ -57,7 +56,7 @@ export default function FormDetails() {
         <h1 className="form-details-title">{form.title}</h1>
         <p className="form-details-description">{form.description}</p>
         <p className="form-details-meta">
-          Published: {form.publishedDate} • {form.responses} responses
+          Published: {form.publishedDate} • Created by {form.ownerUsername || "Unknown"}
         </p>
 
         {canEdit ? (

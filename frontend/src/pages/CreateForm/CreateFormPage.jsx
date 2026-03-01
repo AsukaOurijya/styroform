@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./CreateFormStyle.css";
+import { apiUrl } from "../../utils/api";
 
 const buildQuestionId = () => `${Date.now()}-${Math.floor(Math.random() * 10000)}`;
 
@@ -12,6 +13,8 @@ export default function CreateForm() {
   const [formCoverPreview, setFormCoverPreview] = useState("");
   const [formErrors, setFormErrors] = useState({ title: "", cover: "" });
   const [questions, setQuestions] = useState([]);
+  const [submitError, setSubmitError] = useState("");
+  const [isSaving, setIsSaving] = useState(false);
   const [editor, setEditor] = useState({
     mode: null,
     editingId: null,
@@ -39,7 +42,7 @@ export default function CreateForm() {
     });
   };
 
-  const handleSaveForm = () => {
+  const handleSaveForm = async () => {
     const nextErrors = { title: "", cover: "" };
 
     if (!formTitle.trim()) {
@@ -53,8 +56,42 @@ export default function CreateForm() {
     setFormErrors(nextErrors);
     if (nextErrors.title || nextErrors.cover) return;
 
-    // Placeholder save action while backend is not connected.
-    window.alert("Form saved locally.");
+    setIsSaving(true);
+    setSubmitError("");
+
+    try {
+      const formData = new FormData();
+      formData.append("title", formTitle.trim());
+      formData.append("description", formDescription.trim());
+      formData.append("cover", formCoverFile);
+      formData.append(
+        "questions",
+        JSON.stringify(
+          questions.map((question) => ({
+            questionText: question.questionText,
+            answerRequired: question.answerRequired,
+          }))
+        )
+      );
+
+      const response = await fetch(apiUrl("/forms/create/"), {
+        method: "POST",
+        credentials: "include",
+        body: formData,
+      });
+
+      if (!response.ok) {
+        const payload = await response.json().catch(() => ({}));
+        setSubmitError(payload.detail || "Failed to save form.");
+        return;
+      }
+
+      navigate("/FormList");
+    } catch {
+      setSubmitError("Failed to save form.");
+    } finally {
+      setIsSaving(false);
+    }
   };
 
   const openCreateEditor = () => {
@@ -133,10 +170,13 @@ export default function CreateForm() {
             className="create-form-top-button"
             type="button"
             onClick={handleSaveForm}
+            disabled={isSaving}
           >
-            Save Form
+            {isSaving ? "Saving..." : "Save Form"}
           </button>
         </header>
+
+        {submitError ? <p className="form-field-error">{submitError}</p> : null}
 
         <section className="form-meta-card">
           <label className="form-field-label" htmlFor="form-title-input">

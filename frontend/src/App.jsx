@@ -4,8 +4,10 @@ import {
   Route,
   Navigate,
 } from "react-router-dom"
+import "./App.css";
 
 import Navbar from "./components/navbar/Navbar";
+import Footer from "./components/footer/Footer";
 import ProtectedRoute from "./components/auth/ProtectedRoute";
 import Hero from "./pages/Hero/HeroPage";
 import Login from "./pages/Login/LoginPage";
@@ -21,64 +23,69 @@ import EditAccount from "./pages/EditAccount/EditAccountPage";
 export default function App() {
   return (
     <BrowserRouter>
-      <Navbar />
+      <div className="app-shell">
+        <Navbar />
 
-      <Routes>
-        <Route path="/" element={<Hero />} />
-        <Route path="/Login" element={<Login />} />
-        <Route path="/Register" element={<Register />} />
-        <Route
-          path="/FormList"
-          element={
-            <ProtectedRoute>
-              <FormList />
-            </ProtectedRoute>
-          }
-        />
-        <Route
-          path="/CreateForm"
-          element={
-            <ProtectedRoute>
-              <CreateForm />
-            </ProtectedRoute>
-          }
-        />
-        <Route
-          path="/EditForm"
-          element={
-            <ProtectedRoute>
-              <EditForm />
-            </ProtectedRoute>
-          }
-        />
-        <Route
-          path="/FormDetails"
-          element={
-            <ProtectedRoute>
-              <FormDetails />
-            </ProtectedRoute>
-          }
-        />
-        <Route path="/Forgot" element={<Forgot />} />
-        <Route
-          path="/AccountPreview"
-          element={
-            <ProtectedRoute>
-              <AccountPreview />
-            </ProtectedRoute>
-          }
-        />
-        <Route
-          path="/EditAccount"
-          element={
-            <ProtectedRoute>
-              <EditAccount />
-            </ProtectedRoute>
-          }
-        />
-        <Route path="*" element={<Navigate to="/" replace />} />
-      </Routes>
-  
+        <main className="app-main">
+          <Routes>
+            <Route path="/" element={<Hero />} />
+            <Route path="/Login" element={<Login />} />
+            <Route path="/Register" element={<Register />} />
+            <Route
+              path="/FormList"
+              element={
+                <ProtectedRoute>
+                  <FormList />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/CreateForm"
+              element={
+                <ProtectedRoute>
+                  <CreateForm />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/EditForm"
+              element={
+                <ProtectedRoute>
+                  <EditForm />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/FormDetails"
+              element={
+                <ProtectedRoute>
+                  <FormDetails />
+                </ProtectedRoute>
+              }
+            />
+            <Route path="/Forgot" element={<Forgot />} />
+            <Route
+              path="/AccountPreview"
+              element={
+                <ProtectedRoute>
+                  <AccountPreview />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/EditAccount"
+              element={
+                <ProtectedRoute>
+                  <EditAccount />
+                </ProtectedRoute>
+              }
+            />
+            <Route path="*" element={<Navigate to="/" replace />} />
+          </Routes>
+        </main>
+
+        <Footer />
+      </div>
     </BrowserRouter>
   );
 }

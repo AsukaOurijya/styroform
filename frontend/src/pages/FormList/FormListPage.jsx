@@ -1,53 +1,27 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import "./FormListStyle.css";
-import formPreviewImage from "../../assets/landscape.jpg";
 import noImage from "../../assets/noimage.jpg";
 import { apiUrl } from "../../utils/api";
+
+const formatPublishedDate = (timestamp) => {
+  if (!timestamp) return "-";
+  const date = new Date(timestamp);
+  if (Number.isNaN(date.getTime())) return "-";
+
+  return date.toLocaleDateString("en-US", {
+    month: "short",
+    day: "numeric",
+    year: "numeric",
+  });
+};
 
 export default function FormList() {
   const [activeFilter, setActiveFilter] = useState("all");
   const [username, setUsername] = useState("");
-  const [forms, setForms] = useState([
-    {
-      id: 1,
-      title: "Customer Satisfaction Factory",
-      description:
-        "Gather user feedback about product quality, support speed, and overall satisfaction in one streamlined form.",
-      publishedDate: "Feb 28, 2026",
-      responses: 43,
-      isOwner: true,
-      imageSrc: formPreviewImage,
-      isStarred: false,
-      questions: [
-        "How satisfied are you with our product quality?",
-        "How would you rate our support team's response time?",
-        "Which feature gives you the most value?",
-        "What should we improve first to raise your satisfaction?",
-      ],
-    },
-    {
-      id: 2,
-      title: "Campus Event Organization",
-      description:
-        "Register for workshops, keynote sessions, and networking activities with a single multi-step form.",
-      publishedDate: "Feb 26, 2026",
-      responses: 112,
-      isOwner: false,
-      imageSrc: null,
-      isStarred: false,
-      questions: [
-        "Which event division do you want to join?",
-        "Why do you want to join this event organization?",
-        "What relevant experience do you have?",
-        "How many hours per week can you commit?",
-      ],
-    },
-  ]);
-
-  const handleDelete = (formId) => {
-    setForms((prevForms) => prevForms.filter((form) => form.id !== formId));
-  };
+  const [forms, setForms] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [loadError, setLoadError] = useState("");
 
   const toggleStar = (formId) => {
     setForms((prevForms) =>
@@ -57,31 +31,109 @@ export default function FormList() {
     );
   };
 
-  const filteredForms = forms.filter((form) => {
-    if (activeFilter === "my") return form.isOwner;
-    if (activeFilter === "starred") return form.isStarred;
-    return true;
-  });
+  const handleDelete = async (formId) => {
+    try {
+      const response = await fetch(apiUrl(`/forms/${formId}/delete/`), {
+        method: "POST",
+        credentials: "include",
+      });
+
+      if (!response.ok) {
+        const payload = await response.json().catch(() => ({}));
+        setLoadError(payload.detail || "Failed to delete form.");
+        return;
+      }
+
+      setForms((prevForms) => prevForms.filter((form) => form.id !== formId));
+    } catch {
+      setLoadError("Failed to delete form.");
+    }
+  };
 
   useEffect(() => {
     let isMounted = true;
 
-    fetch(apiUrl("/accounts/session/"), {
-      credentials: "include",
-    })
-      .then(async (response) => {
-        if (!isMounted || !response.ok) return;
-        const payload = await response.json();
-        if (payload.authenticated && payload.user?.username) {
-          setUsername(payload.user.username);
+    const loadData = async () => {
+      setIsLoading(true);
+      setLoadError("");
+
+      try {
+        const sessionResponse = await fetch(apiUrl("/accounts/session/"), {
+          credentials: "include",
+        });
+
+        if (!sessionResponse.ok) {
+          if (isMounted) {
+            setLoadError("Failed to load session.");
+            setIsLoading(false);
+          }
+          return;
         }
-      })
-      .catch(() => {});
+
+        const sessionPayload = await sessionResponse.json();
+        const currentUserId = sessionPayload.user?.id;
+
+        if (isMounted && sessionPayload.user?.username) {
+          setUsername(sessionPayload.user.username);
+        }
+
+        const formsResponse = await fetch(apiUrl("/forms/"), {
+          credentials: "include",
+        });
+
+        if (!formsResponse.ok) {
+          const payload = await formsResponse.json().catch(() => ({}));
+          if (isMounted) {
+            setLoadError(payload.detail || "Failed to load forms.");
+            setIsLoading(false);
+          }
+          return;
+        }
+
+        const formsPayload = await formsResponse.json();
+        const normalizedForms = (formsPayload.forms || []).map((form) => ({
+          id: form.id,
+          title: form.title,
+          description: form.description || "No description.",
+          publishedDate: formatPublishedDate(form.created_at),
+          ownerUsername: form.owner_username || "Unknown",
+          isOwner: currentUserId === form.owner_id,
+          imageSrc: form.cover_url || null,
+          isStarred: false,
+          questions: Array.isArray(form.questions)
+            ? form.questions
+                .map((question) => {
+                  if (typeof question === "string") return question;
+                  return question?.prompt || "";
+                })
+                .filter(Boolean)
+            : [],
+        }));
+
+        if (isMounted) {
+          setForms(normalizedForms);
+          setIsLoading(false);
+        }
+      } catch {
+        if (isMounted) {
+          setLoadError("Failed to load forms.");
+          setIsLoading(false);
+        }
+      }
+    };
+
+    loadData();
 
     return () => {
       isMounted = false;
     };
   }, []);
+
+  const filteredForms = forms.filter((form) => {
+    if (activeFilter === "my") return form.isOwner;
+    if (activeFilter === "starred") return form.isStarred;
+    return true;
+  });
 
   return (
     <main className="form-list-page">
@@ -120,7 +172,11 @@ export default function FormList() {
         </div>
 
         <section className="form-card-grid">
-          {filteredForms.length === 0 ? (
+          {isLoading ? (
+            <p className="form-list-empty">Loading forms...</p>
+          ) : loadError ? (
+            <p className="form-list-empty">{loadError}</p>
+          ) : filteredForms.length === 0 ? (
             <p className="form-list-empty">No forms found for this filter.</p>
           ) : (
             filteredForms.map((form) => (
@@ -140,7 +196,7 @@ export default function FormList() {
                   <h2 className="form-card-title">{form.title}</h2>
                   <p className="form-card-description">{form.description}</p>
                   <p className="form-card-meta">
-                    Published: {form.publishedDate} • {form.responses} responses
+                    Published: {form.publishedDate} • Created by {form.ownerUsername}
                   </p>
                 </div>
 

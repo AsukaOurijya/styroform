@@ -14,6 +14,18 @@ export default defineConfig(({ mode }) => {
           target: backendTarget,
           changeOrigin: true,
         },
+        "/forms": {
+          target: backendTarget,
+          changeOrigin: true,
+        },
+        "/core": {
+          target: backendTarget,
+          changeOrigin: true,
+        },
+        "/media": {
+          target: backendTarget,
+          changeOrigin: true,
+        },
       },
     },
   };
